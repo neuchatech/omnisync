@@ -11,10 +11,10 @@
 - [x] **Phase 2: React Adapter**
     - [x] Implement `useOmni` hook
     - [x] Implement `ErrorBoundary`
-- [ ] **Phase 3: Bindings**
-    - [ ] Define `BackendBinding` interface
-    - [ ] Implement `GraphQLBinding` (basic)
-    - [ ] Implement `SQLBinding` (basic)
+- [x] **Phase 3: Bindings**
+    - [x] Define `BackendBinding` interface
+    - [x] Implement `GraphQLBinding` (basic)
+    - [x] Implement `SQLBinding` (basic)
 - [ ] **Phase 4: Query Builder**
     - [ ] Implement `CollectionProxy`
     - [ ] Implement chaining (`where`, `orderBy`, `limit`)
