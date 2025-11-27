@@ -69,4 +69,13 @@ describe('createProxy', () => {
             expect(e).toBe(promise);
         }
     });
+
+    it('should notify on array mutation', () => {
+        const spy = jest.fn();
+        const proxy = createProxy<{ list: number[] }>({ list: [] }, spy);
+
+        proxy.list.push(1);
+        expect(spy).toHaveBeenCalled();
+        expect(proxy.list).toHaveLength(1);
+    });
 });

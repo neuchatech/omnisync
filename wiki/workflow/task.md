@@ -18,5 +18,8 @@
 - [x] **Phase 4: Query Builder**
     - [x] Implement `CollectionProxy`
     - [x] Implement chaining (`where`, `orderBy`, `limit`)
-- [ ] **Verification**
-    - [ ] Create Todo Proof-of-Concept App
+- [ ] **Verification: OmniKanban App**
+    - [ ] Setup React App (Vite)
+    - [ ] Implement Schema & Mock Backend
+    - [ ] Implement Kanban Board UI (Columns, Drag & Drop)
+    - [ ] Implement Advanced Features (Tags, Pagination)
