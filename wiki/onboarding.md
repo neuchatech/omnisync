@@ -13,4 +13,5 @@ OmniSync is a unified state management library. We use a Kernel + Adapter archit
 - **Bindings**: Connect to external data sources (GraphQL, SQL, etc.).
 
 ## Workflow
+Always check the existing project structure and files before starting any work to avoid redundancy.
 Always follow the TDD cycle: Red -> Green -> Refactor.

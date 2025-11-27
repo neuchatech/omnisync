@@ -1,6 +1,7 @@
 import { Subscribable } from './subscribable';
 
 export const META = Symbol('OmniSyncMeta');
+export const ON_CHANGE = Symbol('OmniSyncOnChange');
 
 export interface MetaState {
     status: 'idle' | 'loading' | 'error' | 'ready';
@@ -18,8 +19,14 @@ export type ProxyTarget = Record<string | symbol, any>;
 export function createProxy<T extends ProxyTarget>(
     target: T,
     onChange?: () => void,
-    suspense?: (prop: string | symbol) => Promise<any> | undefined
+    suspense?: (prop: string | symbol) => Promise<any> | undefined,
+    cache = new WeakMap<object, any>()
 ): T {
+    // Check cache first
+    if (cache.has(target)) {
+        return cache.get(target);
+    }
+
     const subscribable = new Subscribable<void>();
 
     const handler: ProxyHandler<T> = {
@@ -41,14 +48,18 @@ export function createProxy<T extends ProxyTarget>(
                 } as MetaState;
             }
 
+            if (prop === ON_CHANGE) {
+                return subscribable;
+            }
+
             const value = Reflect.get(target, prop, receiver);
 
             if (typeof value === 'object' && value !== null) {
-                // Recursive proxying
+                // Recursive proxying with cache
                 return createProxy(value, () => {
                     subscribable.notify();
                     onChange?.();
-                }, suspense);
+                }, suspense, cache);
             }
 
             return value;
@@ -64,5 +75,7 @@ export function createProxy<T extends ProxyTarget>(
         },
     };
 
-    return new Proxy(target, handler);
+    const proxy = new Proxy(target, handler);
+    cache.set(target, proxy);
+    return proxy;
 }
