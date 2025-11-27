@@ -1,0 +1,22 @@
+# Omnisync Project Tasks
+
+- [ ] **Project Initialization**
+    - [ ] Initialize `package.json` and `tsconfig.json`
+    - [ ] Create directory structure (`src/kernel`, `src/react`, `src/bindings`)
+    - [ ] Set up testing framework (Jest/Vitest)
+- [ ] **Phase 1: The Kernel**
+    - [ ] Implement `createProxy` (traps for get/set)
+    - [ ] Implement `Subscribable` (event emitter)
+    - [ ] Implement `Suspense` logic
+- [ ] **Phase 2: React Adapter**
+    - [ ] Implement `useOmni` hook
+    - [ ] Implement `ErrorBoundary`
+- [ ] **Phase 3: Bindings**
+    - [ ] Define `BackendBinding` interface
+    - [ ] Implement `GraphQLBinding` (basic)
+    - [ ] Implement `SQLBinding` (basic)
+- [ ] **Phase 4: Query Builder**
+    - [ ] Implement `CollectionProxy`
+    - [ ] Implement chaining (`where`, `orderBy`, `limit`)
+- [ ] **Verification**
+    - [ ] Create Todo Proof-of-Concept App

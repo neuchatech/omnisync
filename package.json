@@ -1,0 +1,31 @@
+{
+  "name": "omnisync",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neuchatech/omnisync.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neuchatech/omnisync/issues"
+  },
+  "homepage": "https://github.com/neuchatech/omnisync#readme",
+  "description": "",
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/react": "^19.2.7",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.5"
+  }
+}
