@@ -1,5 +1,6 @@
 import { useEffect, useReducer } from 'react';
-import { ON_CHANGE, Subscribable } from '../kernel/proxy';
+import { ON_CHANGE } from '../kernel/proxy';
+import { Subscribable } from '../kernel/subscribable';
 
 export function useOmni<T>(proxy: T): T {
     const [, forceUpdate] = useReducer((x) => x + 1, 0);

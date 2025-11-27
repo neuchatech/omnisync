@@ -40,4 +40,11 @@ describe('SQLBinding', () => {
         expect(result.sql).toContain('WHERE id = ?');
         expect(result.params).toEqual(['123']);
     });
+
+    it('should build a SELECT with JOINs', () => {
+        const result = binding.buildQuery('todos', {
+            include: ['user']
+        });
+        expect(result.sql).toContain('LEFT JOIN user ON todos.user_id = user.id');
+    });
 });

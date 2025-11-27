@@ -37,4 +37,12 @@ describe('GraphQLBinding', () => {
         });
         expect(result.query).toContain('id: "123"');
     });
+
+    it('should build a query with included relations', () => {
+        const result = binding.buildQuery('todos', {
+            include: ['user', 'comments']
+        });
+        expect(result.query).toContain('user { id }');
+        expect(result.query).toContain('comments { id }');
+    });
 });

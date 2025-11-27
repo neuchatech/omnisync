@@ -23,6 +23,13 @@ export class SQLBinding implements BackendBinding {
         let sql = `SELECT * FROM ${collection}`;
         const params: any[] = [];
 
+        if (options.include) {
+            for (const relation of options.include) {
+                // Simplified JOIN logic for demo
+                sql += ` LEFT JOIN ${relation} ON ${collection}.${relation}_id = ${relation}.id`;
+            }
+        }
+
         if (options.pk) {
             sql += ` WHERE id = ?`;
             params.push(options.pk);

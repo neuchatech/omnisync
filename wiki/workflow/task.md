@@ -15,8 +15,8 @@
     - [x] Define `BackendBinding` interface
     - [x] Implement `GraphQLBinding` (basic)
     - [x] Implement `SQLBinding` (basic)
-- [ ] **Phase 4: Query Builder**
-    - [ ] Implement `CollectionProxy`
-    - [ ] Implement chaining (`where`, `orderBy`, `limit`)
+- [x] **Phase 4: Query Builder**
+    - [x] Implement `CollectionProxy`
+    - [x] Implement chaining (`where`, `orderBy`, `limit`)
 - [ ] **Verification**
     - [ ] Create Todo Proof-of-Concept App

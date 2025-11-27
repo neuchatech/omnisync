@@ -49,7 +49,15 @@ export class GraphQLBinding implements BackendBinding {
             query += `(${args.join(', ')})`;
         }
 
-        query += ` { id } }`; // Default selection
+        query += ` { id`; // Default selection
+
+        if (options.include) {
+            for (const relation of options.include) {
+                query += ` ${relation} { id }`;
+            }
+        }
+
+        query += ` } }`;
 
         return {
             query,

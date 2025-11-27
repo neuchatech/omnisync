@@ -4,6 +4,7 @@ export interface QueryOptions {
     limit?: number;
     offset?: number;
     pk?: string | number;
+    include?: string[];
 }
 
 export interface QueryRequest {
