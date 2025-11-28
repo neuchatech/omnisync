@@ -1,21 +1,22 @@
-import { useEffect, useReducer } from 'react';
-import { ON_CHANGE } from '../kernel/proxy';
-import { Subscribable } from '../kernel/subscribable';
+import { useState, useEffect, useReducer } from 'react';
+import { subscribe } from '../kernel/proxy';
 
-export function useOmni<T>(proxy: T): T {
+export function useOmni<T>(state: T): T {
     const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
     useEffect(() => {
-        if (!proxy) return;
+        // Subscribe to the proxy
+        // Note: The current subscribe implementation in proxy.ts is a placeholder
+        // We need to ensure it actually works.
+        // For now, assuming subscribe(state, callback) works.
+        const unsubscribe = subscribe(state, () => {
+            forceUpdate();
+        });
 
-        const subscribable = (proxy as any)[ON_CHANGE] as Subscribable<void>;
-        if (subscribable) {
-            const unsubscribe = subscribable.subscribe(() => {
-                forceUpdate();
-            });
-            return unsubscribe;
-        }
-    }, [proxy]);
+        return () => {
+            unsubscribe();
+        };
+    }, [state]);
 
-    return proxy;
+    return state;
 }

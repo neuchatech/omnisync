@@ -16,6 +16,10 @@ export interface QueryRequest {
 }
 
 export interface MutationRequest {
+    type?: 'create' | 'update' | 'delete' | 'custom';
+    collection?: string;
+    data?: any;
+    id?: string | number;
     mutation?: string;
     variables?: Record<string, any>;
     sql?: string;

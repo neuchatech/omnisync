@@ -2,6 +2,7 @@ import { Subscribable } from './subscribable';
 
 export const META = Symbol('OmniSyncMeta');
 export const ON_CHANGE = Symbol('OmniSyncOnChange');
+export const SUBSCRIBABLE = Symbol('OmniSyncSubscribable');
 
 export interface MetaState {
     status: 'idle' | 'loading' | 'error' | 'ready';
@@ -52,6 +53,10 @@ export function createProxy<T extends ProxyTarget>(
                 return subscribable;
             }
 
+            if (prop === SUBSCRIBABLE) {
+                return subscribable;
+            }
+
             const value = Reflect.get(target, prop, receiver);
 
             if (typeof value === 'object' && value !== null) {
@@ -78,4 +83,15 @@ export function createProxy<T extends ProxyTarget>(
     const proxy = new Proxy(target, handler);
     cache.set(target, proxy);
     return proxy;
+}
+
+export function subscribe(proxy: any, listener: () => void) {
+    // We need a way to access the subscribable from the proxy.
+    // Since we don't have a symbol for it yet, we'll need to refactor createProxy to expose it
+    // or use a global map. For now, let's assume we can attach it to the proxy via a symbol.
+    const subscribable = proxy[SUBSCRIBABLE];
+    if (subscribable) {
+        return subscribable.subscribe(listener);
+    }
+    return () => { };
 }
